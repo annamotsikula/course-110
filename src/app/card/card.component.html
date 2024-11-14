@@ -7,9 +7,28 @@
       </span>
       <span class="float-end price-hp">{{ product.price }}&euro;</span>
     </div>
+    <span>{{product.rating}}</span>
+    <span class="ms-2">
+      <ng-container [ngSwitch]="product.weight < 10">
+        <ng-container *ngSwitchCase="0">Gadgets</ng-container>
+        <ng-container *ngSwitchCase="1">Fragnancy</ng-container>
+        <ng-container *ngSwitchDefault>No Category</ng-container>
+      </ng-container>
+      @switch (product.category) {
+        @case ('smartphones') {
+          Gadgets
+        }
+        @case ('fragrances') {
+          Fragnancy
+        }
+        @default {
+          None
+        }
+      }
+
+    </span>
     <h5 class="card-title">{{ product.description }}</h5>
-    <span>{{onSale ? 'On sale' : 'Not on sale'}}</span>
-    <div class="text-center my-4">
+    <div class="text-center my-4" [appLowstock]="product.stock < 20">
       <a href="#" class="btn btn-warning" (click)="submit()">Check offer</a>
     </div>
   </div>

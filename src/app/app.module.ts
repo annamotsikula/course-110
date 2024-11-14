@@ -7,13 +7,17 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LowstockDirective } from './core/directives/lowstock.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    CardComponent
+    CardComponent,
+    DashboardComponent,
+    LowstockDirective
   ],
   imports: [
     BrowserModule,
