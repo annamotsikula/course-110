@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product } from '../app.interface';
 
 @Component({
@@ -6,23 +6,16 @@ import { Product } from '../app.interface';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
-export class CardComponent implements OnInit {
-  product: Product = {
-    price: 100,
-    title: 'Wireless Headphones',
-    color: 'Grey',
-    model: 'HP',
-    thumbnail: "https://us.technics.com/cdn/shop/products/sbu-2021-a800-galleryimages-2-211208.png?v=1654793381",
-    inStock: true,
-    tags: [],
-    description: 'High-quality Bluetooth headphones with noise cancellation',
-    dimensions: {
-      width: 350,
-      height: 250
-    },
-    rating: [5, 4, 5, 3, 4],
-  }
-
+export class CardComponent implements OnInit, OnChanges {
+  @Input({required: true}) product!: Product
+  @Input() onSale: boolean = false;
+  @Output() productSum: EventEmitter<number> = new EventEmitter<number>()
+  @Output() message: EventEmitter<string|number|boolean> = new EventEmitter<string|number|boolean>()
+  
+ngOnChanges(changes: SimpleChanges): void {
+  console.log(changes)
+  
+}
   ratingSum!: string
 
   calculatRating(ratings: number[]): string {
@@ -32,8 +25,12 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.ratingSum = this.calculatRating(this.product.rating)
-    console.log('OnInit')
   }
- 
+
+  submit() {
+    this.message.emit(`You've chosen product: ${this.product.title}`)
+    this.productSum.emit(this.product.id);
+  }
+
 }
 

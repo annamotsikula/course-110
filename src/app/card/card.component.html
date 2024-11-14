@@ -2,12 +2,15 @@
   <img [src]="product.thumbnail" class="card-img-top" [alt]="product.model" />
   <div class="card-body">
     <div class="clearfix mb-3">
-      <span class="float-start badge rounded-pill bg-primary"> {{ product.title }} </span>
+      <span class="float-start badge rounded-pill bg-primary">
+        {{ product.title }}
+      </span>
       <span class="float-end price-hp">{{ product.price }}&euro;</span>
     </div>
-    <h5 class="card-title"> {{ product.description }} </h5>
+    <h5 class="card-title">{{ product.description }}</h5>
+    <span>{{onSale ? 'On sale' : 'Not on sale'}}</span>
     <div class="text-center my-4">
-      <a href="#" class="btn btn-warning">Check offer</a>
+      <a href="#" class="btn btn-warning" (click)="submit()">Check offer</a>
     </div>
   </div>
 </div>

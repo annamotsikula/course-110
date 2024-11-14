@@ -7,6 +7,7 @@ export interface Product {
     price: number,
     title: string,
     color: string,
+    id: number,
     dimensions?: Dimensions,
     releaseDate?: Date,
     rating: number[]
@@ -16,3 +17,4 @@ interface Dimensions {
     width: number,
     height: number,
 }
+

@@ -1,5 +1,72 @@
 <app-header />
 <div class="container py-2">
-    <app-card />
+  <div class="d-flex justify-content-around">
+    <app-card [product]="newProduct"  (message)="displayMsg($event)"/>
+    <app-card [product]="anotherProduct" (productSum)="checkOut($event)" (message)="displayMsg($event)" />
+    
+    <div class="w-50">
+      <div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            [(ngModel)]="userName"
+            />
+        </div>
+      </div>
+      <h4>Extra Options</h4>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="isWireless"
+          [(ngModel)]="extraOptions.isWireless"
+        />
+        <label class="form-check-label" for="isWireless"> Wireless </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="hasWarranty"
+          [(ngModel)]="extraOptions.hasWarranty"
+        />
+        <label class="form-check-label" for="hasWarranty"> Warranty </label>
+      </div>
+      <h4>Shipping Method</h4>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="standard"
+          id="standard"
+          value="standard"
+          [(ngModel)]="extraOptions.shippingMethod"
+
+        />
+        <label class="form-check-label" for="standard"> Standard </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="express"
+          id="express"
+          [(ngModel)]="extraOptions.shippingMethod"
+          value="express"
+        />
+        <label class="form-check-label" for="express"> Express </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h4>Summary</h4>
+    <p class="alert alert-warn">Your order with {{checkoutData.id}} has been submitted</p>
+  </div>
 </div>
 <app-footer />
