@@ -9,22 +9,22 @@ import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LowstockDirective } from './core/directives/lowstock.directive';
+import { TruncatePipe } from './core/pipes/truncate.pipe';
+
+const components = [
+  AppComponent,
+  HeaderComponent,
+  FooterComponent,
+  CardComponent,
+  DashboardComponent,
+];
+const directives = [LowstockDirective];
+const pipes = [TruncatePipe];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    CardComponent,
-    DashboardComponent,
-    LowstockDirective
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+  declarations: [...components, ...directives, ...pipes],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
