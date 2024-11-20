@@ -8,6 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   today = new Date();
 
+  constructor() {
+
+  }
+
   test = {
     result: 90,
     highScore: 150,

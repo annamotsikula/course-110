@@ -4,7 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'truncate',
 })
 export class TruncatePipe implements PipeTransform {
-  transform(value: any, ...args: any[]) {
-   
+  transform(value: string, limit: number = 3) {
+    const words: string[] = value.split(/\s+/);
+    if (words.length > limit) {
+      return words.slice(0, limit).join(' ') + '...';
+    }
+
+    return value;
   }
 }

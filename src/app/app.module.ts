@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LowstockDirective } from './core/directives/lowstock.directive';
 import { TruncatePipe } from './core/pipes/truncate.pipe';
+import { TestService } from './core/services/test.service';
 
 const components = [
   AppComponent,
@@ -24,7 +25,7 @@ const pipes = [TruncatePipe];
 @NgModule({
   declarations: [...components, ...directives, ...pipes],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
+  // providers: [TestService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

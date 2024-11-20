@@ -1,34 +1,3 @@
 <app-header />
-<div class="container">
-  {{ { score: 100 } | json }}
-  <div>
-    <!-- Number Pipe -->
-    <h3>Initial Value: {{ calculation }}</h3>
-    <p>{{ calculation | number : "2.1-3" }}</p>
-    <p>{{ calculation | number : "3.2-3" }}</p>
-    <p>{{ calculation | percent }}</p>
-    <p>{{ calculation | currency : "EUR" }}</p>
-    <p>{{ calculation | currency : "GEL" }}</p>
-    <p>{{ calculation | currency : "CAD" : "symbol" }}</p>
-    <br />
-    <br />
-    <h3>Initial Value: {{ title }}</h3>
-    <p>{{ title | lowercase }}</p>
-    <p>{{ title | titlecase }}</p>
-    <p>{{ title | uppercase }}</p>
-    <p>{{ title | slice : 3 : 8 }}</p>
-    <br />
-    <br />
-    <h3>Initial Value: {{ today }}</h3>
-    <p>{{ today | date : "short" }}</p>
-    <p>{{ today | date : "long" }}</p>
-    <p>{{ today | date : "mediumDate" }}</p>
-    <p>{{ today | date : "shortTime" }}</p>
-    <p>{{ today | date : "MMMM d, y, h:mm" }}</p>
-    {{ "1731946989" | date }}
-
-    <button (click)="clickMe()">Click me</button>
-  </div>
-</div>
-<!-- <app-dashboard /> -->
+<app-dashboard />
 <app-footer />
