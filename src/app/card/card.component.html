@@ -1,4 +1,10 @@
 <div class="card shadow-sm">
+  <div class="rm">
+    <button class="btn btn-danger" (click)="productSum.emit(product.id)">
+      <i class="bi bi-trash"></i>
+    </button>
+    
+  </div>
   <img [src]="product.thumbnail" class="card-img-top" [alt]="product.model" />
   <div class="card-body">
     <div class="clearfix mb-3">
@@ -14,7 +20,7 @@
     </div>
     <span>{{ product.rating }}</span>
     <span class="ms-2"> </span>
-    <h5 class="card-title">{{ product.description | truncate: 10 }}</h5>
+    <h5 class="card-title">{{ product.description | truncate : 10 }}</h5>
     <div class="text-center my-4" [appLowstock]="product.stock < 20">
       <a href="#" class="btn btn-warning" (click)="submit()">Check offer</a>
     </div>

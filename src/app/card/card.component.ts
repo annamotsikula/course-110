@@ -1,19 +1,17 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product } from '../core/interfaces/product.interface';
-import { TestService } from '../core/services/test.service';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
-  providers: [TestService]
 })
 export class CardComponent implements OnInit, OnChanges {
   @Input({required: true}) product!: Product
   @Output() productSum: EventEmitter<number> = new EventEmitter<number>()
   @Output() message: EventEmitter<string|number|boolean> = new EventEmitter<string|number|boolean>()
  
-  constructor(private service: TestService) {
+  constructor() {
 
   }
   
@@ -38,6 +36,8 @@ ngOnChanges(changes: SimpleChanges): void {
     this.message.emit(`You've chosen product: ${this.product.title}`)
     this.productSum.emit(this.product.id);
   }
+
+  
 
 }
 

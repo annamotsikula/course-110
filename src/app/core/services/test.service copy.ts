@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 
-@Injectable()
-export class TestService {
-    myValue = 100;
+@Injectable({
+    providedIn: 'root'
+})
+export class OldTestService {
+    myValue = 600;
     constructor() {
         console.log(this.myValue);
     }

@@ -1,5 +1,10 @@
 .card {
     max-width: 300px;
+    .rm {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
     img {
         width: 200px;
         height: 200px;

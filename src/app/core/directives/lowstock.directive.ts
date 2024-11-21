@@ -17,12 +17,14 @@ export class LowstockDirective {
 
   }
   displayBlock() {
+    if(this.isLowStock) {
+      this.hoverElement = this._renderer.createElement("div") as HTMLDivElement ;
+      this._renderer.addClass(this.hoverElement, 'low-stock');
+      this.hoverElement.innerHTML = 'Few Items left';
+  
+      this._renderer.appendChild(this._el.nativeElement, this.hoverElement);
+    }
 
-    this.hoverElement = this._renderer.createElement("div") as HTMLDivElement ;
-    this._renderer.addClass(this.hoverElement, 'low-stock');
-    this.hoverElement.innerHTML = 'Few Items left';
-
-    this._renderer.appendChild(this._el.nativeElement, this.hoverElement);
   }
 
   removeBlock() {

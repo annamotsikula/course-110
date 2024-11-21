@@ -21,3 +21,6 @@ interface Dimensions {
     height: number,
 }
 
+export enum Category {
+
+}
