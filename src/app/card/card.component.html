@@ -22,7 +22,8 @@
     <span class="ms-2"> </span>
     <h5 class="card-title">{{ product.description | truncate : 10 }}</h5>
     <div class="text-center my-4" [appLowstock]="product.stock < 20">
-      <a href="#" class="btn btn-warning" (click)="submit()">Check offer</a>
+      <!-- <button class="btn btn-warning" (click)="redirect()">Check offer</button> -->
+      <a class="btn btn-warning" [routerLink]="['/products', product.id ]">Check offer</a>
     </div>
   </div>
 </div>

@@ -3,12 +3,12 @@ import { Product } from '../core/interfaces/product.interface';
 import { ProductService } from '../core/services/products.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  providers: [ProductService]
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss',
+
 })
-export class DashboardComponent {
+export class ProductsComponent {
   userName: string = 'johnDoe_123'
   displayAddForm: boolean = false
 

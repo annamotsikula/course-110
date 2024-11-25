@@ -27,4 +27,8 @@ export class ProductService {
             this._productList.splice(index, 1)
         }
     }
+    getSingleProduct(id: number): Product | undefined {
+        const product = this._productList.find(i => i.id === id);
+        return product ? product : undefined
+    }
 }

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product } from '../core/interfaces/product.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -8,8 +9,10 @@ import { Product } from '../core/interfaces/product.interface';
 })
 export class CardComponent implements OnInit, OnChanges {
   @Input({required: true}) product!: Product
-  @Output() productSum: EventEmitter<number> = new EventEmitter<number>()
-  @Output() message: EventEmitter<string|number|boolean> = new EventEmitter<string|number|boolean>()
+  @Output() productSum: EventEmitter<number> = new EventEmitter<number>();
+  @Output() message: EventEmitter<string|number|boolean> = new EventEmitter<string|number|boolean>();
+
+  router = inject(Router)
  
   constructor() {
 
@@ -32,9 +35,9 @@ ngOnChanges(changes: SimpleChanges): void {
    
   }
 
-  submit() {
-    this.message.emit(`You've chosen product: ${this.product.title}`)
-    this.productSum.emit(this.product.id);
+  redirect() {
+    console.log('The product id is: ', this.product.id)
+    this.router.navigate([`/products/${this.product.id}`])
   }
 
   
