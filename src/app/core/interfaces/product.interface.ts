@@ -20,7 +20,3 @@ interface Dimensions {
     width: number,
     height: number,
 }
-
-export enum Category {
-
-}

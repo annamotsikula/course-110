@@ -3,15 +3,14 @@
     <button class="btn btn-danger" (click)="productSum.emit(product.id)">
       <i class="bi bi-trash"></i>
     </button>
-    
   </div>
   <img [src]="product.thumbnail" class="card-img-top" [alt]="product.model" />
   <div class="card-body">
     <div class="clearfix mb-3">
-      <span class="float-start badge rounded-pill bg-primary">
-        @switch (product.category) { @case ('smartphones') { Gadgets } @case
-        ('fragrances') { Fragnancy } @default { None } }
-      </span>
+      <span
+        class="float-start badge rounded-pill"
+        [category]="product.category"
+      ></span>
       <br />
       <span class="float-start">
         {{ product.title }}
@@ -23,7 +22,9 @@
     <h5 class="card-title">{{ product.description | truncate : 10 }}</h5>
     <div class="text-center my-4" [appLowstock]="product.stock < 20">
       <!-- <button class="btn btn-warning" (click)="redirect()">Check offer</button> -->
-      <a class="btn btn-warning" [routerLink]="['/products', product.id ]">Check offer</a>
+      <a class="btn btn-warning" [routerLink]="['/products', product.id]"
+        >Check offer</a
+      >
     </div>
   </div>
 </div>

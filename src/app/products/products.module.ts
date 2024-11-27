@@ -6,10 +6,11 @@ import { LowstockDirective } from '../core/directives/lowstock.directive';
 import { TruncatePipe } from '../core/pipes/truncate.pipe';
 import { ProductsComponent } from '../products/products.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProductService } from '../core/services/products.service';
+import { ProductCategoryDirective } from '../core/directives/categoty.directive';
 
-const directives = [LowstockDirective];
+const directives = [LowstockDirective, ProductCategoryDirective];
 const pipes = [TruncatePipe];
 const components = [
     ProductsComponent,
