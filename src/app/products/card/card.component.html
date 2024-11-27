@@ -12,14 +12,11 @@
         [category]="product.category"
       ></span>
       <br />
-      <span class="float-start">
-        {{ product.title }}
-      </span>
+      <h5 class="card-title">{{ product.title }}</h5>
       <span class="float-end price-hp">{{ product.price }}&euro;</span>
     </div>
-    <span>{{ product.rating }}</span>
-    <span class="ms-2"> </span>
-    <h5 class="card-title">{{ product.description | truncate : 10 }}</h5>
+    <span class="float-start">{{ product.rating }}</span>
+    <span class="">{{ product.description | truncate : 10 }}</span>
     <div class="text-center my-4" [appLowstock]="product.stock < 20">
       <!-- <button class="btn btn-warning" (click)="redirect()">Check offer</button> -->
       <a class="btn btn-warning" [routerLink]="['/products', product.id]"

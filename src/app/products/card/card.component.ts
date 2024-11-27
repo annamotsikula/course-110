@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Product } from '../core/interfaces/product.interface';
 import { Router } from '@angular/router';
+import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
   selector: 'app-card',
