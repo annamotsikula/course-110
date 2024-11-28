@@ -1,12 +1,53 @@
-@if (product) {
-    <div>
-        <h2>{{ product.title }}</h2>
-        <div>
-            <h4>Information</h4>
-            <div>
-                {{ product.description}}
-            </div>
-        </div>
+<div class="container d-flex">
+  @if(product) {
+  <div class="left-column">
+    <img [src]="product.thumbnail" alt="" />
+  </div>
+
+  <div class="right-column">
+    <div class="product-description">
+      <span>{{ product.category }}</span>
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.description }}</p>
     </div>
- 
-}
+
+    <div class="product-configuration">
+      <div class="product-color">
+        <span>Color</span>
+
+        <div class="color-choose">
+          <div>
+            <input
+              data-image="red"
+              type="radio"
+              id="red"
+              name="color"
+              value="red"
+              checked
+            />
+            <label for="red"><span></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>configuration</span>
+
+        <div class="cable-choose">
+          <button>Straight</button>
+          <button>Coiled</button>
+          <button>Long-coiled</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span>148$</span>
+      <a href="#" class="cart-btn">Add to cart</a>
+    </div>
+  </div>
+
+  }
+</div>

@@ -8,11 +8,12 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 
 const components = [
   AppComponent,
+  NotFoundPageComponent, 
 ];
 
 
 @NgModule({
-  declarations: [...components, NotFoundPageComponent],
+  declarations: [...components],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   // providers: [
   //   { provide: TestService, useClass: OldTestService }

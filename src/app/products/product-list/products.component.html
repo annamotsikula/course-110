@@ -1,56 +1,24 @@
 <div class="container py-2">
-    <div class="my-4">
-      <button class="btn btn-warning" (click)="displayAddForm = !displayAddForm">
-        + Add new product
-      </button>
-      @if(displayAddForm) {
-      <div class="w-50 m-auto">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Title</span>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="newProductInput.title"
-            placeholder="Product Title"
-          />
-        </div>
-  
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Description"
-            [(ngModel)]="newProductInput.description"
-          />
-        </div>
-        <div class="input-group mb-3">
-          <input
-            type="number"
-            class="form-control"
-            placeholder="Price"
-            [(ngModel)]="newProductInput.price"
-          />
-        </div>
-        <div class="input-group mb-3">
-          <select [(ngModel)]="newProductInput.category">
-            <option value="" selected disabled>--Choose Category</option>
-            <option value="smartphones">SmartPhones</option>
-            <option value="fragrances">Perfume</option>
-          </select>
-        </div>
-        <button (click)="addNewProduct()" class="btn btn-success">Submit</button>
-      </div>
-  
+  <div class="my-4">
+    <button class="btn btn-warning" (click)="displayAddForm = !displayAddForm">
+      + Add new product
+    </button>
+    @if(displayAddForm) {
+    <app-pop-up title="New Product" (close)="displayAddForm = false">
+      <app-product-add />
+    </app-pop-up>
+    }
+  </div>
+  <div class="d-flex justify-content-around">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      @for (singleProduct of products; track singleProduct.id) {
+      <app-card
+        [product]="singleProduct"
+        (productSum)="deleteProduct($event)"
+      />
+      } @empty {
+      <p>No items</p>
       }
     </div>
-    <div class="d-flex justify-content-around">
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-        @for (singleProduct of products; track singleProduct.id) {
-        <app-card [product]="singleProduct" (productSum)="deleteProduct($event)" />
-        } @empty {
-        <p>No items</p>
-        }
-      </div>
-    </div>
   </div>
-  
+</div>

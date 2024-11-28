@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LowstockDirective } from '../core/directives/lowstock.directive';
 import { TruncatePipe } from '../core/pipes/truncate.pipe';
 import { RouterModule, Routes } from '@angular/router';
@@ -9,6 +9,8 @@ import { ProductCategoryDirective } from '../core/directives/categoty.directive'
 import { ProductsComponent } from './product-list/products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CardComponent } from './card/card.component';
+import { SharedComponentsModule } from '../core/components/components.module';
+import { ProductAddComponent } from './product-add/product-add.component';
 
 const directives = [LowstockDirective, ProductCategoryDirective];
 const pipes = [TruncatePipe];
@@ -34,11 +36,14 @@ const routes: Routes = [
         ...components,
         ...pipes,
         ...directives,
+        ProductAddComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
         FormsModule,
+        SharedComponentsModule,
+        ReactiveFormsModule
     ],
     exports: [
         ...pipes,

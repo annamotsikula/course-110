@@ -1,0 +1,86 @@
+<form [formGroup]="productForm" (submit)="onSubmit()">
+  <div class="m-auto">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Title</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Product Title"
+        formControlName="title"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Description"
+        formControlName="description"
+      />
+    </div>
+    <div class="input-group mb-3">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Price"
+        formControlName="price"
+      />
+    </div>
+    <div>
+      <span>Dimensions</span>
+      <div formGroupName="dimensions">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Width</span>
+          <input type="number" class="form-control" formControlName="width" />
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">Height</span>
+          <input type="number" class="form-control" formControlName="height" />
+        </div>
+      </div>
+    </div>
+    @if(productForm.controls.tags) {
+    <div formArrayName="tags">
+        @for (tag of productForm.controls.tags.controls; track $index) {
+          <span class="chip primary">{{tag.value}}</span>
+        }
+    </div>
+
+    }
+    <div>
+      <input
+        type="text"
+        [(ngModel)]="tagName"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <button type="button" (click)="addTags()">+ Add Tags</button>
+    </div>
+
+    <div class="input-group mb-3">
+      <!-- <select [(ngModel)]="newProductInput.category">
+          <option value="" selected disabled>--Choose Category</option>
+          <option value="smartphones">SmartPhones</option>
+          <option value="fragrances">Perfume</option>
+        </select> -->
+      <span class="me-2">Agree on terms and conditions</span>
+      <input
+        placeholder="Product Title"
+        type="checkbox"
+        formControlName="agreeOnTerms"
+      />
+    </div>
+    <button
+      class="btn btn-warning me-2"
+      type="button"
+      (click)="productForm.reset()"
+    >
+      Clear Form
+    </button>
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="productForm.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
