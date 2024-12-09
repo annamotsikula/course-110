@@ -1,41 +1,37 @@
 <form [formGroup]="productForm" (submit)="onSubmit()">
   <div class="m-auto">
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Title</span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Product Title"
-        formControlName="title"
-      />
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" class="form-control" placeholder="Product Title"formControlName="title">
     </div>
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Description"
-        formControlName="description"
-      />
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <input type="text" class="form-control" placeholder="Product Description" formControlName="description" >
+      @if(productForm.controls.description.invalid && (productForm.controls.description.touched)) {
+        @if(productForm.controls.description.errors; as controlErr) {
+          @if(controlErr['minlength']) {
+            <div class="invalid-block">
+              You have written minimum {{controlErr['minlength'].actualLength}} / {{ controlErr['minlength'].requiredLength}} words 
+            </div>
+           
+          }
+          @if(controlErr['prohibitedWord']) {
+            <p class="text-danger">Prohibited Word</p>
+          } 
+        }
+
+      }
+
     </div>
-    <div class="input-group mb-3">
-      <input
-        type="number"
-        class="form-control"
-        placeholder="Price"
-        formControlName="price"
-      />
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" formControlName="price">
     </div>
     <div>
       <span>Dimensions</span>
-      <div formGroupName="dimensions">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Width</span>
-          <input type="number" class="form-control" formControlName="width" />
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">Height</span>
-          <input type="number" class="form-control" formControlName="height" />
-        </div>
+      <div class="input-group mb-3" formGroupName="dimensions">
+        <input type="number" class="form-control" formControlName="width" class="form-control" placeholder="Width" aria-label="Width">
+        <input type="number" class="form-control" formControlName="height" placeholder="Height" aria-label="Height">
       </div>
     </div>
     @if(productForm.controls.tags) {
@@ -44,15 +40,15 @@
           <span class="chip primary">{{tag.value}}</span>
         }
     </div>
-
     }
-    <div>
+    <div class="row g-2">
       <input
         type="text"
+        class="form-control me-2 col"
         [(ngModel)]="tagName"
         [ngModelOptions]="{ standalone: true }"
       />
-      <button type="button" (click)="addTags()">+ Add Tags</button>
+      <button type="button" class="btn btn-info col-auto" (click)="addTags()">+ Add Tags</button>
     </div>
 
     <div class="input-group mb-3">
@@ -78,7 +74,7 @@
     <button
       class="btn btn-success"
       type="submit"
-      [disabled]="productForm.invalid"
+     
     >
       Submit
     </button>

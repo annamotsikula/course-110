@@ -8,12 +8,13 @@ export interface NewProduct {
     dimensions: FormGroup<Dimension>,
     viewScore?: FormGroup<any>,
     agreeOnTerms: FormControl<boolean | null>,
-    tags?: FormArray<FormControl<string|null>>
+    tags?: FormArray<FormControl<string|null>>,
+    area?: FormControl<number|null>
 }
 interface Dimension {
 
-    width: FormControl<string>,
-    height: FormControl<string>
+    width: FormControl<number>,
+    height: FormControl<number>
 
 }
  
