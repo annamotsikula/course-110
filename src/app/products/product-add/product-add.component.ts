@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { NewProduct } from '../../core/interfaces/form.interface';
 import { descriptionValidator } from '../../core/validators/description.validator';
+import { debounce, debounceTime, filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-product-add',
@@ -23,7 +24,7 @@ export class ProductAddComponent {
       width: new FormControl(),
       height: new FormControl()
     }),
-    
+
     agreeOnTerms: new FormControl(false, Validators.requiredTrue),
 
   })
@@ -34,11 +35,25 @@ export class ProductAddComponent {
   // typedfA = new FormArray([]);
 
   constructor(private _formBuilder: FormBuilder) {
+    this.productForm.controls.description.valueChanges.pipe(
+      debounceTime(300)
+    ).subscribe((res) => {
+      console.log(res);
+    })
+
+    this.productForm.controls.description.statusChanges.pipe(
+      filter(status => status === "DISABLED" ),
+      tap(res => {
+        console.log(res)
+      }
+      ))
+      .subscribe()
+
     console.log(this.productForm)
     //  const fA = this._formBuilder.array([]);
     //  const fG = this._formBuilder.group({});
     //  const fC = this._formBuilder.control()
-  
+
   }
 
   addNestedGroup() {
@@ -59,26 +74,28 @@ export class ProductAddComponent {
 
   }
   onSubmit() {
-    if(this.productForm.valid) {
-      if(this.productForm.controls.agreeOnTerms.disabled) {
+    if (this.productForm.valid) {
+      if (this.productForm.controls.agreeOnTerms.disabled) {
         this.productForm.controls.agreeOnTerms.enable()
       }
       const { dimensions, area } = this.productForm.controls;
       console.log(dimensions.value) // { width: null, height: null}
       // dimensions.setValue({height: 300}); // error
-      dimensions.patchValue({height: 300}) // valid
+      dimensions.patchValue({ height: 300 }) // valid
       this.productForm.controls.description.addValidators(descriptionValidator())
       area?.setValue(Number(dimensions.controls.width.value) * Number(dimensions.controls.height.value));
       // area?.patchValue(Number(dimensions.controls.width.value) * Number(dimensions.controls.height.value));
     } else {
       this.productForm.markAllAsTouched();
       this.productForm.markAsDirty();
+      this.productForm.controls.description.disable();
       // this.productForm.controls.agreeOnTerms.disable();
       // this.productForm.controls.category.disable();
     }
-   console.log(this.productForm , this.productForm.value.agreeOnTerms, this.productForm.valid)
-   console.log(this.productForm.getRawValue())
-   this.productForm.setErrors({formisNotValid: true})
+    console.log(this.productForm, this.productForm.value.agreeOnTerms, this.productForm.valid)
+    console.log(this.productForm.getRawValue());
+    
+    this.productForm.setErrors({ formisNotValid: true })
 
   }
   addTags() {
@@ -97,6 +114,6 @@ export class ProductAddComponent {
 
     console.log(this.productForm.controls.tags)
   }
- 
+
 
 }
