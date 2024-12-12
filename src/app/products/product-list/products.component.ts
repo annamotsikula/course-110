@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ProductService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/product.interface';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -21,16 +22,30 @@ export class ProductsComponent {
   //   category: ''
   // }
 
+
   constructor(private productService: ProductService) {
+    this.productService.productAdd.subscribe((respn) => {
+  
+    })
+
+  }
+  countVar = 0
+  add() {
+    this.productService.passSingleProduct()
+    // this.productService.cartItems.next()
+    // this.productService.cartItemCount.next(++this.productService.count)
+
 
   }
 
   ngOnInit() {
-    this.products = this.getProducts();
+    this.getProducts().subscribe()
   }
 
-  getProducts(): Product[] {
-    return this.productService.getProducts();
+  getProducts(): Observable<Product[]> {
+    return this.productService.getProducts().pipe(
+      tap(result => this.products = result)
+    )
   }
 
   // addNewProduct() {
@@ -51,7 +66,7 @@ export class ProductsComponent {
   // }
 
   deleteProduct(id: number) {
-    this.productService.deleteProduct(id)
+    // this.productService.deleteProduct(id)
   }
 
 

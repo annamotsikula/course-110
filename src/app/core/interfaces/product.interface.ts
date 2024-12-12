@@ -20,3 +20,16 @@ interface Dimensions {
     width: number,
     height: number,
 }
+export interface DeleteProduct extends Product {
+
+    isDeleted: boolean,
+    deletedOn: string
+
+}
+export interface ProductResponse {
+    products: Product[]
+    skip: number,
+    total: number,
+    limit: number
+
+}

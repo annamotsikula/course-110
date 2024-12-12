@@ -11,6 +11,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CardComponent } from './card/card.component';
 import { SharedComponentsModule } from '../core/components/components.module';
 import { ProductAddComponent } from './product-add/product-add.component';
+import { api_url_token } from '../core/constants/constants';
 
 const directives = [LowstockDirective, ProductCategoryDirective];
 const pipes = [TruncatePipe];
@@ -50,6 +51,6 @@ const routes: Routes = [
         ...directives,
         RouterModule
     ],
-    providers: [ProductService]
+    // providers: [ProductService]
 })
 export class ProductsModule { }

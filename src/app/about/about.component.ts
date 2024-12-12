@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, delay, filter, first, from, fromEvent, interval, last, map, mapTo, Observable, of, Subscribable, Subscription, take, tap, toArray } from 'rxjs';
+import { debounceTime, delay, filter, first, from, fromEvent, interval, last, map, mapTo, Observable, of, Subscribable, Subscription, take, tap, timer, toArray } from 'rxjs';
 
 @Component({
   selector: 'app-about',
@@ -61,12 +61,11 @@ export class AboutComponent implements OnInit {
 
 
     // this.observable.subscribe((res) => console.log(res));
-
-    //  this.subscription = interval(2000).pipe(
-    //     map((res) => `Value Emitted: ${res}`)
-    //   ).subscribe((res) => {
-    //     console.log(res)
-    //   });
+     this.subscription = interval(2000).pipe(
+        map((res) => `Value Emitted: ${res}`)
+      ).subscribe((res) => {
+        console.log(res)
+      });
 
 
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { api_url_token } from './core/constants/constants';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   today = new Date();
 
-  constructor() {
+  constructor(@Inject(api_url_token) private url: string) {
+    console.log(this.url)
 
   }
 
