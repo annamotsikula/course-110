@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductService } from '../core/services/products.service';
-import { switchMap, tap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +10,9 @@ import { switchMap, tap, timer } from 'rxjs';
 export class HeaderComponent {
   productService = inject(ProductService);
 
-  ngOnInit() {
-   const listentoChanges =  this.productService.productAdd.asObservable();
-   listentoChanges.subscribe((value) => console.log(value));
+  logOut() {
+    
   }
+
 
 }

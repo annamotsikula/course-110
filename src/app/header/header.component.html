@@ -4,7 +4,7 @@
       <a
         class="nav-link"
         aria-current="page"
-        routerLink="/products"
+        routerLink="./products"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         >Home</a
@@ -19,8 +19,19 @@
         >RxJs</a
       >
     </li>
-    <li class="">
-      <button type="button" class="btn btn-primary position-relative">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >
+        <i class="bi bi-box-arrow-left"></i>
+        </a
+      >
+    </li>
+    <li>
+      <button type="button" class="btn btn-warning position-relative">
         Profile
         <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
           <span class="visually-hidden">New alerts</span>

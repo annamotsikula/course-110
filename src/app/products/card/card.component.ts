@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
@@ -14,7 +14,7 @@ export class CardComponent implements OnInit, OnChanges {
 
   router = inject(Router)
  
-  constructor() {
+  constructor(private _route: ActivatedRoute) {
 
   }
   
@@ -37,7 +37,7 @@ ngOnChanges(changes: SimpleChanges): void {
 
   redirect() {
     console.log('The product id is: ', this.product.id)
-    this.router.navigate([`/products/${this.product.id}`])
+    this.router.navigate([`./${this.product.id}`], {relativeTo: this._route})
   }
 
   

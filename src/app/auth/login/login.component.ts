@@ -12,8 +12,8 @@ export class LoginComponent {
   private _authService = inject(AuthService);
   private _router = inject(Router);
   authForm = new FormGroup({
-    userName: new FormControl(null, [Validators.required]),
-    pwd: new FormControl(null, [Validators.required]),
+    userName: new FormControl('emilys', [Validators.required]),
+    pwd: new FormControl('emilyspass', [Validators.required]),
   })
 
   login() {
@@ -22,8 +22,8 @@ export class LoginComponent {
       const { userName, pwd } = this.authForm.value
       if(!!userName && !!pwd) {
         this._authService.authUser(userName, pwd).subscribe((res) => {
-          console.log(res)
-          // this._router.navigate(['/products'])
+          // console.log(res)
+          // this._router.navigate(['/home']);
         })
       }
     }

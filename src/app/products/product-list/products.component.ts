@@ -15,28 +15,9 @@ export class ProductsComponent {
 
   products: Product[] = [];
 
-  // newProductInput = {
-  //   title: '',
-  //   price: 0,
-  //   description: '',
-  //   category: ''
-  // }
 
+  constructor(private productService: ProductService) {}
 
-  constructor(private productService: ProductService) {
-    this.productService.productAdd.subscribe((respn) => {
-  
-    })
-
-  }
-  countVar = 0
-  add() {
-    this.productService.passSingleProduct()
-    // this.productService.cartItems.next()
-    // this.productService.cartItemCount.next(++this.productService.count)
-
-
-  }
 
   ngOnInit() {
     this.getProducts().subscribe()
@@ -47,26 +28,11 @@ export class ProductsComponent {
       tap(result => this.products = result)
     )
   }
+  addToCart() {}
 
-  // addNewProduct() {
-  //   if (this.newProductInput.title && this.newProductInput.price) {
-  //     const newProduct: Partial<Product> = {
-  //       ...this.newProductInput,
-  //       rating: [5],
-  //       thumbnail: "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg",
-  //       model: 'XYZ-123'
-  //     }
-  //     this.productService.addProduct(newProduct);
-  //     this.displayAddForm = false
-  //   } else {
-  //     alert('Fill mandatory fields')
-  //   }
-
-
-  // }
 
   deleteProduct(id: number) {
-    // this.productService.deleteProduct(id)
+    this.productService.deleteProduct(id).subscribe()
   }
 
 
