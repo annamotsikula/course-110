@@ -1,43 +1,42 @@
-<header class="d-flex justify-content-center py-3 bg-white border-bottom">
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <a
+<div class="container">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+  >
+    <div class="col-md-3 mb-2 mb-md-0">
+      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <svg
+          class="bi"
+          width="40"
+          height="32"
+          role="img"
+          aria-label="Bootstrap"
+        >
+          <use xlink:href="https://marketplace.canva.com/EAF6ICBwJ7U/1/0/1600w/canva-blue-and-white-circle-retail-logo-jWnP4G7rjfI.jpg"></use>
+        </svg>
+      </a>
+    </div>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li> <a
         class="nav-link"
         aria-current="page"
         routerLink="./products"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         >Home</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        routerLink="./about"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >RxJs</a
-      >
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        >
-        <i class="bi bi-box-arrow-left"></i>
-        </a
-      >
-    </li>
-    <li>
-      <button type="button" class="btn btn-warning position-relative">
-        Profile
-        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-          <span class="visually-hidden">New alerts</span>
-         {{ productService.cartItemCount.getValue()}}
+      ></li>
+      <li><a class="nav-link px-2">About</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+      <button type="button" class="btn btn-outline-primary me-2">Login</button>
+      <button type="button" class="btn btn-primary me-2">Sign-up</button>
+      <button type="button" class="btn btn-primary position-relative">
+        Inbox
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          0
         </span>
       </button>
-    </li>
-  </ul>
-</header>
+    </div>
+  </header>
+</div>

@@ -12,6 +12,7 @@ import { CardComponent } from './card/card.component';
 import { SharedComponentsModule } from '../core/components/components.module';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { api_url_token } from '../core/constants/constants';
+import { productItemResolver } from '../core/resolvers/product.resolver';
 
 const directives = [LowstockDirective, ProductCategoryDirective];
 const pipes = [TruncatePipe];
@@ -28,7 +29,8 @@ const routes: Routes = [
     },
     {
         path: ':id',
-        component: ProductDetailsComponent
+        component: ProductDetailsComponent,
+        resolve: { item: productItemResolver },
     }
 ]
 

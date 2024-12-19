@@ -41,8 +41,9 @@ export class ProductService {
         const newReq = new HttpClient(this._httpBackend).delete<DeleteProduct>(`${this.apiUrl}/products/${id}`)
         return newReq 
     }
-    getSingleProduct(id: number): Product | undefined {
-        const product = this._productList.find(i => i.id === id);
-        return product ? product : undefined
+    getSingleProduct(id: number) {
+        return this._http.get<Product>(`${this.apiUrl}/products/${id}`)
+        // const product = this._productList.find(i => i.id === id);
+        // return product ? product : undefined
     }
 }

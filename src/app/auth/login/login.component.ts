@@ -14,16 +14,15 @@ export class LoginComponent {
   authForm = new FormGroup({
     userName: new FormControl('emilys', [Validators.required]),
     pwd: new FormControl('emilyspass', [Validators.required]),
+    rememberUser: new FormControl(false)
   })
 
   login() {
-    console.log(this.authForm)
     if(this.authForm.valid) {
-      const { userName, pwd } = this.authForm.value
+      const { userName, pwd, rememberUser } = this.authForm.value
       if(!!userName && !!pwd) {
-        this._authService.authUser(userName, pwd).subscribe((res) => {
-          // console.log(res)
-          // this._router.navigate(['/home']);
+        this._authService.authUser({username: userName, pwd, saveLogInInfo: rememberUser || false }).subscribe((res) => {
+          this._router.navigate(['/home']);
         })
       }
     }

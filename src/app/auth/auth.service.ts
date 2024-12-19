@@ -11,26 +11,38 @@ const authToken = "Authorization"
 })
 export class AuthService {
 
+  private _isAuthorized: boolean = false
+
   constructor(@Inject(api_url_token) private _url: string, private _http: HttpClient) { }
 
-  authUser(username: string, pwd: string): Observable<User> {
+  authUser(data: {username: string, pwd: string, saveLogInInfo?: boolean}): Observable<User> {
     const body = {
-      username,
-      password: pwd,
-      expiresInMins: 30
+      username: data.username,
+      password: data.pwd,
+      expiresInMins: 30,
     }
     return this._http.post<AuthUser>(`${this._url}/auth/login`, {...body}).pipe(
       tap((result) => {
-        console.log(result)
-        localStorage.setItem(authToken, result.accessToken || "")
-      }),
-      catchError((res) => {
-         console.log(res)
-        return of(res)
+        localStorage.setItem(authToken, result.accessToken || "");
+        this._isAuthorized = true;
+
+        if(data.saveLogInInfo) {
+          localStorage.setItem("rememberUser", String(data.saveLogInInfo))
+        }
       }),
       map(({accessToken, refreshToken, ...rest}) => ({...rest}))
     )
   }
+
+    isUserAuthorized() {
+      const hasToken = !!localStorage.getItem('Authorization')
+      console.log(hasToken) 
+      return this._isAuthorized || hasToken
+    }
+
+
+
+
 
   
 }

@@ -8,11 +8,10 @@
       <app-product-add />
     </app-pop-up>
     }
-    <button class="btn btn-primary" (click)="addToCart()">Add to Cart</button>
   </div>
   <div class="d-flex justify-content-around">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-      @for (singleProduct of products; track singleProduct.id) {
+      @for (singleProduct of (products$ | async); track singleProduct.id) {
       <app-card
         [product]="singleProduct"
         (productSum)="deleteProduct($event)"

@@ -8,6 +8,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { api_url_token } from './core/constants/constants';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 const components = [
   AppComponent,
@@ -21,7 +22,9 @@ const components = [
   providers: [
     // { provide: TestService, useClass: OldTestService }
     { provide: api_url_token, useValue: "https://dummyjson.com"},
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    
   ],
   bootstrap: [AppComponent],
 })

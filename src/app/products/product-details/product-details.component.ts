@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/product.interface';
 
 @Component({
@@ -10,13 +9,31 @@ import { Product } from '../../core/interfaces/product.interface';
 })
 export class ProductDetailsComponent {
   private _actRoute = inject(ActivatedRoute)
-  private _productService = inject(ProductService)
 
-  product: Product | undefined
-
+  product: Product
+  ratingStars: string[] = []
   constructor() {
-    console.log(this._actRoute.snapshot)
-    const param = this._actRoute.snapshot.paramMap.get('id');
-    if (param) this.product = this._productService.getSingleProduct(Number(param))
+    this.product = this._actRoute.snapshot.data['item'];
+      this.ratingStars = this.getStars(this.product.rating);
+  }
+
+  getStars(rating: number): string[] {
+    const classList: string[] = []
+    const fullStars = Math.floor(rating);
+    const reminder = rating - fullStars
+    const halfStars = reminder !== 0 ? 1 : 0;
+    const emptyStars = 5 - fullStars - halfStars;
+
+    for (let i = 0; i < fullStars; i++) {
+      classList.push('bi-star-fill')
+    }
+
+    halfStars && classList.push('bi-star-half');
+
+    for (let i = 0; i < emptyStars; i++) {
+      classList.push('bi-star')
+    }
+
+    return classList
   }
 }
